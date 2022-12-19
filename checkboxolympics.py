@@ -11,11 +11,11 @@ browser.get("https://checkboxolympics.com/")
 ready = browser.find_element(By.XPATH, '//*[@id="root"]/div/div[2]/div[1]/div[2]/button')
 ready.click()
 sayfa_kaynagi = browser.page_source
-sayfa = BeautifulSoup(sayfa_kaynagi, "lxml")
+sayfa = BeautifulSoup(sayfa_kaynagi, "html.parser")
 zaman = sayfa.find("div", attrs={"class":"time"}).text.lstrip("Time: ")
 while type(zaman) == str:
     sayfa_kaynagi = browser.page_source
-    sayfa = BeautifulSoup(sayfa_kaynagi, "lxml")
+    sayfa = BeautifulSoup(sayfa_kaynagi, "html.parser")
     zaman = (sayfa.find("div", attrs={"class":"time"}).text.lstrip("Time: "))
     try:
         zaman = float(zaman)
